@@ -19,6 +19,8 @@ void createInertiaApp({
                 return null;
             case name === 'BlogCreate':
                 return null;
+            case name === 'BlogEdit':
+                return null;
             case name.startsWith('auth/'):
                 return AuthLayout;
             case name.startsWith('settings/'):

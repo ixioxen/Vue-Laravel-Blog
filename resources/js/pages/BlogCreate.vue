@@ -4,10 +4,16 @@
       <div>
         <input type="text" placeholder="title" v-model="title">
       </div>
+      <div class="text-red-500">
+        {{ $page.props.errors?.title }}
+      </div>
       <div>
         <textarea name="description" id="" v-model="description">
 
         </textarea>
+      </div>
+      <div class="text-red-500">
+        {{ $page.props.errors?.description }}
       </div>
       <div>
         <button type="submit">Create</button>

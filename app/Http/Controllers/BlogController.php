@@ -35,4 +35,22 @@ class BlogController extends Controller
         $blog->save();
         return redirect('/blogs');
     }
+
+    public function Edit(Blog $blog){
+        return Inertia::render('BlogEdit', [
+            'blog' => $blog
+        ]);
+    }
+
+    public function Update(){
+        request()->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+        $blog = new Blog();
+        $blog->title = request('title');
+        $blog->description = request('description');
+        $blog->save();
+        return redirect('/blogs');
+    }
 };
