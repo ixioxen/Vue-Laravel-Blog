@@ -1,0 +1,9 @@
+user and blog table relationship
+
+HASMANY AND ONE TO MANY
+    users hasmany blogs ;  users->blogs()
+    blog belongsTo a user ; blog->user()
+
+ONE TO ONE 
+    a user hason nrc
+    a nrc belongsTo a user

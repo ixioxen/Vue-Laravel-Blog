@@ -1,6 +1,6 @@
 <template>
     <div class="mx-auto max-w-3xl p-6">
-        <h1 class="mb-6 text-2xl font-semibold tracking-tight">Blogs</h1>
+        <h1 class="mb-6 text-2xl font-semibold tracking-tight" v-if="user">{{ user.name }} - {{ user.nrcs.nrc_number }} - {{ user.nrcs.age }}</h1>
         <div class="flex flex-col gap-3">
             <Link
                 v-for="blog in blogs"
@@ -8,7 +8,7 @@
                 :href="`/blogs/${ blog.id }`"
                 class="block rounded-xl border border-border bg-card p-4 shadow-sm transition hover:bg-accent"
             >
-                <h2 class="text-lg font-medium text-foreground">{{ blog.title }}</h2>
+                <h2 class="text-lg font-medium text-foreground">{{ blog.title }} - {{ blog.user?.name }}</h2>
             </Link>
         </div>
     </div>
@@ -21,6 +21,9 @@ import { Link } from '@inertiajs/vue3';
         props: {
             blogs : {
                 type : Array
+            },
+            user : {
+                type : Object
             }
         }
     };

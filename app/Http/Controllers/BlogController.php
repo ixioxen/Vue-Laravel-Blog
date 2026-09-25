@@ -9,13 +9,14 @@ class BlogController extends Controller
 {
     public function index(){
         return Inertia::render('Blogs', [
-            'blogs' => BLog::latest()->get()
+            'blogs' => BLog::latest()->get()->load('user')
+            
         ]);
     }
 
-    public function Show(Blog $blog){
+    public function Show(BLog $blog){
         return Inertia::render('BlogShow', [
-            'blog' => $blog
+            'blog' => $blog->load('user')
         ]);
     }
 
@@ -29,14 +30,14 @@ class BlogController extends Controller
             'description' => 'required',
         ]);
 
-        $blog = new Blog();
+        $blog = new BLog();
         $blog->title = request('title');
         $blog->description = request('description');
         $blog->save();
         return redirect('/blogs');
     }
 
-    public function Edit(Blog $blog){
+    public function Edit(BLog $blog){
         return Inertia::render('BlogEdit', [
             'blog' => $blog
         ]);
@@ -47,10 +48,15 @@ class BlogController extends Controller
             'title' => 'required',
             'description' => 'required',
         ]);
-        $blog = new Blog();
+        $blog = new BLog();
         $blog->title = request('title');
         $blog->description = request('description');
         $blog->save();
         return redirect('/blogs');
+    }
+
+    public function Delete(BLog $blog){
+        $blog->delete();
+        return redirect('blogs');
     }
 };

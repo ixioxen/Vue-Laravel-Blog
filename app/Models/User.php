@@ -47,4 +47,18 @@ class User extends Authenticatable implements PasskeyUser
             'two_factor_confirmed_at' => 'datetime',
         ];
     }
+
+    public function blogs(){
+
+        return $this->hasmany(Blog::class);
+        
+    }
+
+    // a user hason nrc
+    public function nrcs(){
+
+        return $this->hasOne(Nrc::class);
+        
+    }
+
 }
